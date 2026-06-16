@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>MongoDB.Bson</id>
+    <version>2.8.0</version>
+    <authors>rstam,craiggwilson</authors>
+    <owners>rstam,craiggwilson</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <projectUrl>http://www.mongodb.org/display/DOCS/CSharp+Language+Center</projectUrl>
+    <iconUrl>http://jobs.mongodb.org/files/logos/889002/889002.png</iconUrl>
+    <description>MongoDB's Official Bson Library.</description>
+    <copyright>Copyright © 2010-present MongoDB Inc.</copyright>
+    <tags>mongodb mongo nosql bson</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5.2" />
+      <group targetFramework=".NETStandard1.5">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+        <dependency id="System.Collections.NonGeneric" version="4.0.1" exclude="Build,Analyzers" />
+        <dependency id="System.Diagnostics.Process" version="4.1.0" exclude="Build,Analyzers" />
+        <dependency id="System.Dynamic.Runtime" version="4.0.11" exclude="Build,Analyzers" />
+        <dependency id="System.Reflection.Emit.Lightweight" version="4.3.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <license type="file">License.txt</license>
+  </metadata>
+</package>

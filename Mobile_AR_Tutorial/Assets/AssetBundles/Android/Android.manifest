@@ -1,0 +1,37 @@
+ManifestFileVersion: 0
+CRC: 1701191710
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: 128kbobj
+      Dependencies: {}
+    Info_1:
+      Name: 256kbobj
+      Dependencies: {}
+    Info_2:
+      Name: 512kbobj
+      Dependencies: {}
+    Info_3:
+      Name: 1024kbobj
+      Dependencies: {}
+    Info_4:
+      Name: 2048kbobj
+      Dependencies: {}
+    Info_5:
+      Name: 4096kbobj
+      Dependencies: {}
+    Info_6:
+      Name: 8192kbobj
+      Dependencies: {}
+    Info_7:
+      Name: 64kbobj
+      Dependencies: {}
+    Info_8:
+      Name: 16384kbobj
+      Dependencies: {}
+    Info_9:
+      Name: 32768kbobj
+      Dependencies: {}
+    Info_10:
+      Name: 65536kbobj
+      Dependencies: {}
