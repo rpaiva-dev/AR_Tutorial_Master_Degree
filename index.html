@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AR Tutorial Master Degree — Tutoriais Interativos de Realidade Aumentada</title>
+<meta name="description" content="Aplicação móvel de Realidade Aumentada para criação, edição e visualização de tutoriais interativos na Indústria 5.0, desenvolvida em Unity + Vuforia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f5f5f7;
+    --text: #1d1d1f;
+    --text-soft: #6e6e73;
+    --line: #d2d2d7;
+    --accent: #0071e3;
+    --accent-hover: #005bb5;
+    --dark: #1d1d1f;
+    --radius: 14px;
+    --max-width: 1000px;
+    --transition: 0.2s ease;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section { padding: 96px 0; }
+  .section-alt { background: var(--bg-soft); }
+  .section-dark { background: var(--dark); color: #fff; }
+  .section-dark .text-soft { color: rgba(255,255,255,0.65); }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  h1, h2, h3 { letter-spacing: -0.02em; font-weight: 800; }
+
+  h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin-bottom: 16px;
+  }
+
+  .section-intro {
+    max-width: 640px;
+    margin-bottom: 48px;
+  }
+
+  .section-intro p {
+    color: var(--text-soft);
+    font-size: 1.05rem;
+  }
+
+  .section-dark .section-intro p { color: rgba(255,255,255,0.7); }
+
+  /* Header */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  nav {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    gap: 32px;
+  }
+
+  .nav-links li {
+    flex-shrink: 0;
+  }
+
+  .nav-links a {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-soft);
+    white-space: nowrap;
+    transition: color var(--transition);
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    justify-self: end;
+    gap: 16px;
+  }
+
+  .lang-toggle {
+    border: 1px solid var(--line);
+    background: transparent;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: border-color var(--transition), color var(--transition);
+  }
+
+  .lang-toggle:hover { border-color: var(--text); color: var(--text); }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-toggle span {
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 26px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform var(--transition), background var(--transition), border-color var(--transition), color var(--transition), box-shadow var(--transition);
+    white-space: nowrap;
+  }
+
+  .btn:hover { transform: translateY(-1px); }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 8px 20px rgba(0, 113, 227, 0.3);
+  }
+
+  .btn-outline {
+    background: transparent;
+    border-color: var(--line);
+    color: var(--text);
+  }
+
+  .btn-outline:hover { border-color: var(--text); }
+
+  .section-dark .btn-outline {
+    border-color: rgba(255,255,255,0.3);
+    color: #fff;
+  }
+
+  .section-dark .btn-outline:hover { border-color: #fff; }
+
+  /* Hero */
+  .hero {
+    padding: 140px 0 100px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1.08;
+    margin-bottom: 24px;
+  }
+
+  .hero .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-soft);
+    max-width: 680px;
+    margin: 0 auto 16px;
+  }
+
+  .hero .intro {
+    font-size: 1rem;
+    color: var(--text-soft);
+    max-width: 620px;
+    margin: 0 auto 40px;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hero-badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 48px;
+  }
+
+  .hero-badge {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-soft);
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    padding: 8px 16px;
+    border-radius: 999px;
+  }
+
+  /* Grids */
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+  /* Cards */
+  .project-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px;
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .project-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--bg-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  .project-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .project-card p {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+  }
+
+  .tech-item {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    text-align: center;
+    transition: transform var(--transition), border-color var(--transition);
+  }
+
+  .tech-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+
+  .tech-item .tech-icon { font-size: 1.8rem; margin-bottom: 12px; }
+  .tech-item h4 { font-size: 0.95rem; margin-bottom: 4px; }
+  .tech-item p { font-size: 0.8rem; color: var(--text-soft); }
+
+  /* Tag list */
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .tag-list span {
+    background: var(--bg-soft);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-soft);
+  }
+
+  /* Architecture */
+  .arch-box {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 40px;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    white-space: pre;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* Steps */
+  .steps {
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+  }
+
+  .step h4 { font-size: 1rem; margin-bottom: 4px; }
+  .step p { color: var(--text-soft); font-size: 0.92rem; }
+
+  /* Results table */
+  .results-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+
+  .results-table th, .results-table td {
+    padding: 18px 24px;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+
+  .results-table thead {
+    background: var(--bg-soft);
+  }
+
+  .results-table th { font-weight: 700; color: var(--text); }
+  .results-table td { color: var(--text-soft); border-top: 1px solid var(--line); }
+  .results-table tbody tr td:first-child { color: var(--text); font-weight: 600; }
+
+  /* Publication card */
+  .pub-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px;
+    background: var(--bg);
+  }
+
+  .pub-card .eyebrow { margin-bottom: 8px; }
+  .pub-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+  .pub-card p { color: var(--text-soft); }
+
+  /* Contact / dark section */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .contact-card {
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+  }
+
+  .contact-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .contact-card .card-icon {
+    background: rgba(255,255,255,0.08);
+  }
+
+  .contact-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .contact-card p { font-size: 0.9rem; color: rgba(255,255,255,0.65); margin-bottom: 16px; }
+
+  /* Footer */
+  footer {
+    padding: 32px 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    border-top: 1px solid var(--line);
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+
+    .nav-links.open {
+      display: flex;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px 24px;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .section { padding: 64px 0; }
+    .hero { padding: 120px 0 64px; }
+    .step { flex-direction: column; }
+    .arch-box { font-size: 0.78rem; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#sobre" data-i18n="nav.about">Sobre</a></li>
+      <li><a href="#funcionalidades" data-i18n="nav.features">Funcionalidades</a></li>
+      <li><a href="#arquitetura" data-i18n="nav.architecture">Arquitetura</a></li>
+      <li><a href="#tecnologias" data-i18n="nav.stack">Tecnologias</a></li>
+      <li><a href="#publicacoes" data-i18n="nav.publications">Publicações</a></li>
+      <li><a href="#resultados" data-i18n="nav.results">Resultados</a></li>
+      <li><a href="#contato" data-i18n="nav.contact">Contato</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle">EN</button>
+      <a class="btn btn-primary" href="https://github.com/rpaiva-dev/ar_tutorial_master_degree" target="_blank" rel="noopener" data-i18n="nav.cta">Ver repositório</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow" data-i18n="hero.eyebrow">Dissertação de Mestrado · PROFICAM / UFSJ</span>
+    <h1 data-i18n="hero.title">Tutoriais de Realidade Aumentada para a Indústria 5.0</h1>
+    <p class="subtitle" data-i18n="hero.subtitle">Uma aplicação móvel que permite criar, editar e visualizar tutoriais interativos em RA — sem escrever código, sem modelar em 3D.</p>
+    <p class="intro" data-i18n="hero.intro">Desenvolvida em Unity + Vuforia para Android, a solução usa marcadores de imagem para sobrepor instruções virtuais a equipamentos reais, apoiando treinamento, manutenção e transferência de conhecimento.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://github.com/rpaiva-dev/ar_tutorial_master_degree" target="_blank" rel="noopener" data-i18n="hero.ctaPrimary">Ver repositório</a>
+      <a class="btn btn-outline" href="#sobre" data-i18n="hero.ctaSecondary">Saiba mais</a>
+    </div>
+    <div class="hero-badges">
+      <span class="hero-badge" data-i18n="hero.badge1">SUS Especialistas: 85,60</span>
+      <span class="hero-badge" data-i18n="hero.badge2">SUS Usuários Finais: 92,57</span>
+      <span class="hero-badge" data-i18n="hero.badge3">Publicado no SBAI 2025</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="sobre">
+  <div class="container">
+    <div class="section-intro reveal">
+      <span class="eyebrow" data-i18n="about.eyebrow">Sobre o projeto</span>
+      <h2 data-i18n="about.title">O que a aplicação faz</h2>
+      <p data-i18n="about.text1">A aplicação utiliza Realidade Aumentada baseada em marcadores (Image Targets) para posicionar objetos virtuais sobre equipamentos reais, orientando usuários durante procedimentos operacionais, manutenção, treinamento e transferência de conhecimento.</p>
+    </div>
+    <div class="grid-2">
+      <div class="project-card reveal">
+        <div class="card-icon">🛠️</div>
+        <h3 data-i18n="about.card1Title">Criadores de tutoriais</h3>
+        <p data-i18n="about.card1Text">Usuários sem conhecimento em programação, modelagem 3D ou desenvolvimento de RA conseguem montar tutoriais completos diretamente no smartphone.</p>
+      </div>
+      <div class="project-card reveal">
+        <div class="card-icon">📱</div>
+        <h3 data-i18n="about.card2Title">Usuários finais</h3>
+        <p data-i18n="about.card2Text">Visualizam e executam os procedimentos em campo, com objetos virtuais sobrepostos ao equipamento real através da câmera do dispositivo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="funcionalidades">
+  <div class="container">
+    <div class="section-intro reveal">
+      <span class="eyebrow" data-i18n="features.eyebrow">Funcionalidades</span>
+      <h2 data-i18n="features.title">Gerenciamento completo de tutoriais e tarefas</h2>
+      <p data-i18n="features.text">Ferramentas de criação e edição pensadas para quem não tem background técnico, além de uma biblioteca de objetos virtuais configuráveis.</p>
+    </div>
+    <div class="grid-3">
+      <div class="project-card reveal">
+        <div class="card-icon">📋</div>
+        <h3 data-i18n="features.card1Title">Tutoriais</h3>
+        <p data-i18n="features.card1Text">Criar, editar, renomear, excluir e filtrar tutoriais completos.</p>
+      </div>
+      <div class="project-card reveal">
+        <div class="card-icon">✅</div>
+        <h3 data-i18n="features.card2Title">Tarefas</h3>
+        <p data-i18n="features.card2Text">Criar, editar, excluir, reordenar e pré-visualizar cada etapa do procedimento.</p>
+      </div>
+      <div class="project-card reveal">
+        <div class="card-icon">🧩</div>
+        <h3 data-i18n="features.card3Title">Objetos virtuais</h3>
+        <p data-i18n="features.card3Text">Setas direcionais, indicadores de atenção/correto/incorreto/proibição, texto 3D e ferramentas virtuais, cada um com posição, rotação, escala, cor e texto configuráveis.</p>
+      </div>
+    </div>
+    <div class="tag-list reveal">
+      <span data-i18n="features.tag1">Seta Direcional</span>
+      <span data-i18n="features.tag2">Seta Horária</span>
+      <span data-i18n="features.tag3">Seta Anti-horária</span>
+      <span data-i18n="features.tag4">Texto 3D</span>
+      <span data-i18n="features.tag5">Indicador de Atenção</span>
+      <span data-i18n="features.tag6">Indicador de Correto</span>
+      <span data-i18n="features.tag7">Indicador de Incorreto</span>
+      <span data-i18n="features.tag8">Indicador de Proibição</span>
+      <span data-i18n="features.tag9">Ferramentas Virtuais</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="arquitetura">
+  <div class="container">
+    <div class="section-intro reveal">
+      <span class="eyebrow" data-i18n="arch.eyebrow">Arquitetura</span>
+      <h2 data-i18n="arch.title">Como o sistema é organizado</h2>
+      <p data-i18n="arch.text">O banco de dados armazena tutoriais, tarefas, objetos virtuais e suas configurações; o repositório de objetos guarda os modelos e recursos usados nos tutoriais.</p>
+    </div>
+    <div class="arch-box reveal">Usuário
+   │
+   ▼
+Aplicação Android
+(Unity + Vuforia)
+   │
+   ├── Banco de Dados
+   │      (MongoDB Atlas)
+   │
+   └── Repositório de Objetos
+          (Asset Bundles)</div>
+  </div>
+</section>
+
+<section class="section section-alt" id="tecnologias">
+  <div class="container">
+    <div class="section-intro reveal">
+      <span class="eyebrow" data-i18n="stack.eyebrow">Stack tecnológica</span>
+      <h2 data-i18n="stack.title">Ferramentas utilizadas</h2>
+    </div>
+    <div class="grid-4">
+      <div class="tech-item reveal">
+        <div class="tech-icon">🎮</div>
+        <h4>Unity</h4>
+        <p data-i18n="stack.unity">Desenvolvimento da aplicação</p>
+      </div>
+      <div class="tech-item reveal">
+        <div class="tech-icon">💠</div>
+        <h4>C#</h4>
+        <p data-i18n="stack.csharp">Programação</p>
+      </div>
+      <div class="tech-item reveal">
+        <div class="tech-icon">🎯</div>
+        <h4>Vuforia Engine</h4>
+        <p data-i18n="stack.vuforia">Rastreamento em RA</p>
+      </div>
+      <div class="tech-item reveal">
+        <div class="tech-icon">🍃</div>
+        <h4>MongoDB Atlas</h4>
+        <p data-i18n="stack.mongo">Banco de dados</p>
+      </div>
+      <div class="tech-item reveal">
+        <div class="tech-icon">🤖</div>
+        <h4>Android</h4>
+        <p data-i18n="stack.android">Plataforma móvel</p>
+      </div>
+      <div class="tech-item reveal">
+        <div class="tech-icon">🧱</div>
+        <h4>Blender</h4>
+        <p data-i18n="stack.blender">Modelagem 3D</p>
+      </div>
+      <div class="tech-item reveal">
+        <div class="tech-icon">🎨</div>
+        <h4>Figma</h4>
+        <p data-i18n="stack.figma">Prototipação de interface</p>
+      </div>
+      <div class="tech-item reveal">
+        <div class="tech-icon">🔧</div>
+        <h4>Git</h4>
+        <p data-i18n="stack.git">Controle de versão</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="publicacoes">
+  <div class="container">
+    <div class="section-intro reveal">
+      <span class="eyebrow" data-i18n="pubs.eyebrow">Publicações</span>
+      <h2 data-i18n="pubs.title">Artigos publicados pelo autor</h2>
+      <p data-i18n="pubs.text">Trabalhos publicados ao longo da graduação e do mestrado, na área de Realidade Aumentada aplicada à indústria.</p>
+    </div>
+    <div class="steps">
+      <div class="pub-card reveal">
+        <span class="eyebrow">2021 · SBAI</span>
+        <h3>Realidade aumentada na criação de tutoriais para a Indústria 4.0</h3>
+        <p>Rodrigo José de Paiva, Rone Ilídio da Silva — Universidade Federal de São João del-Rei (UFSJ), Campus Alto Paraopeba.</p>
+        <a class="btn btn-outline" style="margin-top:16px" href="https://www.sba.org.br/open_journal_systems/index.php/sbai/article/view/2570" target="_blank" rel="noopener" data-i18n="pubs.readCta">Ler artigo</a>
+      </div>
+      <div class="pub-card reveal">
+        <span class="eyebrow">2023 · SBCUP</span>
+        <h3>Ferramenta para Criação de Tutoriais em Realidade Aumentada para a Indústria 4.0</h3>
+        <p>Victor A. Vieira, Rodrigo J. Paiva, Rone I. Silva — Universidade Federal de São João del-Rei (UFSJ).</p>
+        <a class="btn btn-outline" style="margin-top:16px" href="https://sol.sbc.org.br/index.php/sbcup/article/view/24996" target="_blank" rel="noopener" data-i18n="pubs.readCta">Ler artigo</a>
+      </div>
+      <div class="pub-card reveal">
+        <span class="eyebrow">2025 · SBAI</span>
+        <h3>Tutoriais AR Interativos: Uma Ferramenta Simplificada para Indústria 5.0</h3>
+        <p>Rodrigo José de Paiva (UFOP), Flávia Paulucci Cianga Silvas (ITV), Rone Ilídio da Silva (UFSJ), Saul Delabrida (UFOP).</p>
+        <a class="btn btn-outline" style="margin-top:16px" href="https://www.sba.org.br/open_journal_systems/index.php/sbai/article/view/5072" target="_blank" rel="noopener" data-i18n="pubs.readCta">Ler artigo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="resultados">
+  <div class="container">
+    <div class="section-intro reveal">
+      <span class="eyebrow" data-i18n="results.eyebrow">Resultados</span>
+      <h2 data-i18n="results.title">Avaliação de usabilidade e aceitação</h2>
+      <p data-i18n="results.text">A aplicação foi avaliada por especialistas de domínio e usuários finais, com base nos questionários SUS (System Usability Scale) e TAM (Technology Acceptance Model).</p>
+    </div>
+    <div style="overflow-x:auto" class="reveal">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th data-i18n="results.colGroup">Grupo</th>
+            <th>SUS</th>
+            <th>TAM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-i18n="results.rowExperts">Especialistas</td>
+            <td>85,60</td>
+            <td>4,47</td>
+          </tr>
+          <tr>
+            <td data-i18n="results.rowUsers">Usuários Finais</td>
+            <td>92,57</td>
+            <td>4,68</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:48px" class="pub-card reveal">
+      <span class="eyebrow" data-i18n="results.pubEyebrow">Publicação</span>
+      <h3 data-i18n="results.pubTitle">Tutoriais AR Interativos: Uma Ferramenta Simplificada para Indústria 5.0</h3>
+      <p data-i18n="results.pubText">SBAI 2025 — Simpósio Brasileiro de Automação Inteligente.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="como-usar">
+  <div class="container">
+    <div class="section-intro reveal">
+      <span class="eyebrow" data-i18n="setup.eyebrow">Como executar</span>
+      <h2 data-i18n="setup.title">Compilando o projeto</h2>
+      <p data-i18n="setup.text">Requisitos: Unity 2022 LTS ou superior, Android SDK, OpenJDK e Android Build Support.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div>
+          <h4 data-i18n="setup.step1Title">Configurar o banco de dados</h4>
+          <p data-i18n="setup.step1Text">Criar conta e cluster no MongoDB Atlas, criar o banco de dados e a coleção de tutoriais, configurar usuário e IPs autorizados.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <div>
+          <h4 data-i18n="setup.step2Title">Conectar a connection string</h4>
+          <p data-i18n="setup.step2Text">Inserir a Connection String do MongoDB nos scripts responsáveis pela conexão com o banco.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <div>
+          <h4 data-i18n="setup.step3Title">Configurar o repositório de objetos</h4>
+          <p data-i18n="setup.step3Text">Hospedar os Asset Bundles (Google Drive, Azure Blob Storage, AWS S3, servidor HTTP ou NAS corporativo) e associar as URLs aos registros no banco.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <div>
+          <h4 data-i18n="setup.step4Title">Gerar o build</h4>
+          <p data-i18n="setup.step4Text">No Unity: File → Build Settings → Android → Switch Platform → Build (ou Build App Bundle para o Google Play).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark section" id="contato">
+  <div class="container">
+    <div class="section-intro reveal">
+      <span class="eyebrow" data-i18n="contact.eyebrow">Contato</span>
+      <h2 data-i18n="contact.title">Explore o projeto</h2>
+      <p class="text-soft" data-i18n="contact.text">Código-fonte, dissertação e informações sobre o autor.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <div class="card-icon">💻</div>
+        <h3 data-i18n="contact.repoTitle">Repositório</h3>
+        <p data-i18n="contact.repoText">Código-fonte completo da aplicação Unity.</p>
+        <a class="btn btn-outline" href="https://github.com/rpaiva-dev/ar_tutorial_master_degree" target="_blank" rel="noopener" data-i18n="contact.repoCta">Abrir no GitHub</a>
+      </div>
+      <div class="contact-card reveal">
+        <div class="card-icon">🎓</div>
+        <h3 data-i18n="contact.authorTitle">Autor</h3>
+        <p data-i18n="contact.authorText">Rodrigo José de Paiva — PROFICAM, Universidade Federal de São João del-Rei (UFSJ).</p>
+        <a class="btn btn-outline" href="https://github.com/rpaiva-dev" target="_blank" rel="noopener" data-i18n="contact.authorCta">Perfil no GitHub</a>
+      </div>
+      <div class="contact-card reveal">
+        <div class="card-icon">📄</div>
+        <h3 data-i18n="contact.licenseTitle">Licença</h3>
+        <p data-i18n="contact.licenseText">Projeto disponibilizado para fins acadêmicos e científicos.</p>
+        <a class="btn btn-outline" href="https://github.com/rpaiva-dev/ar_tutorial_master_degree/blob/main/LICENSE" target="_blank" rel="noopener" data-i18n="contact.licenseCta">Ver licença</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p data-i18n="footer.text">&copy; 2025 Rodrigo José de Paiva. AR Tutorial Master Degree — PROFICAM / UFSJ.</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // i18n
+  const translations = {
+    pt: {
+      'nav.about': 'Sobre',
+      'nav.features': 'Funcionalidades',
+      'nav.architecture': 'Arquitetura',
+      'nav.stack': 'Tecnologias',
+      'nav.publications': 'Publicações',
+      'nav.results': 'Resultados',
+      'nav.contact': 'Contato',
+      'nav.cta': 'Ver repositório',
+      'hero.eyebrow': 'Dissertação de Mestrado · PROFICAM / UFSJ',
+      'hero.title': 'Tutoriais de Realidade Aumentada para a Indústria 5.0',
+      'hero.subtitle': 'Uma aplicação móvel que permite criar, editar e visualizar tutoriais interativos em RA — sem escrever código, sem modelar em 3D.',
+      'hero.intro': 'Desenvolvida em Unity + Vuforia para Android, a solução usa marcadores de imagem para sobrepor instruções virtuais a equipamentos reais, apoiando treinamento, manutenção e transferência de conhecimento.',
+      'hero.ctaPrimary': 'Ver repositório',
+      'hero.ctaSecondary': 'Saiba mais',
+      'hero.badge1': 'SUS Especialistas: 85,60',
+      'hero.badge2': 'SUS Usuários Finais: 92,57',
+      'hero.badge3': 'Publicado no SBAI 2025',
+      'about.eyebrow': 'Sobre o projeto',
+      'about.title': 'O que a aplicação faz',
+      'about.text1': 'A aplicação utiliza Realidade Aumentada baseada em marcadores (Image Targets) para posicionar objetos virtuais sobre equipamentos reais, orientando usuários durante procedimentos operacionais, manutenção, treinamento e transferência de conhecimento.',
+      'about.card1Title': 'Criadores de tutoriais',
+      'about.card1Text': 'Usuários sem conhecimento em programação, modelagem 3D ou desenvolvimento de RA conseguem montar tutoriais completos diretamente no smartphone.',
+      'about.card2Title': 'Usuários finais',
+      'about.card2Text': 'Visualizam e executam os procedimentos em campo, com objetos virtuais sobrepostos ao equipamento real através da câmera do dispositivo.',
+      'features.eyebrow': 'Funcionalidades',
+      'features.title': 'Gerenciamento completo de tutoriais e tarefas',
+      'features.text': 'Ferramentas de criação e edição pensadas para quem não tem background técnico, além de uma biblioteca de objetos virtuais configuráveis.',
+      'features.card1Title': 'Tutoriais',
+      'features.card1Text': 'Criar, editar, renomear, excluir e filtrar tutoriais completos.',
+      'features.card2Title': 'Tarefas',
+      'features.card2Text': 'Criar, editar, excluir, reordenar e pré-visualizar cada etapa do procedimento.',
+      'features.card3Title': 'Objetos virtuais',
+      'features.card3Text': 'Setas direcionais, indicadores de atenção/correto/incorreto/proibição, texto 3D e ferramentas virtuais, cada um com posição, rotação, escala, cor e texto configuráveis.',
+      'features.tag1': 'Seta Direcional',
+      'features.tag2': 'Seta Horária',
+      'features.tag3': 'Seta Anti-horária',
+      'features.tag4': 'Texto 3D',
+      'features.tag5': 'Indicador de Atenção',
+      'features.tag6': 'Indicador de Correto',
+      'features.tag7': 'Indicador de Incorreto',
+      'features.tag8': 'Indicador de Proibição',
+      'features.tag9': 'Ferramentas Virtuais',
+      'arch.eyebrow': 'Arquitetura',
+      'arch.title': 'Como o sistema é organizado',
+      'arch.text': 'O banco de dados armazena tutoriais, tarefas, objetos virtuais e suas configurações; o repositório de objetos guarda os modelos e recursos usados nos tutoriais.',
+      'stack.eyebrow': 'Stack tecnológica',
+      'stack.title': 'Ferramentas utilizadas',
+      'stack.unity': 'Desenvolvimento da aplicação',
+      'stack.csharp': 'Programação',
+      'stack.vuforia': 'Rastreamento em RA',
+      'stack.mongo': 'Banco de dados',
+      'stack.android': 'Plataforma móvel',
+      'stack.blender': 'Modelagem 3D',
+      'stack.figma': 'Prototipação de interface',
+      'stack.git': 'Controle de versão',
+      'pubs.eyebrow': 'Publicações',
+      'pubs.title': 'Artigos publicados pelo autor',
+      'pubs.text': 'Trabalhos publicados ao longo da graduação e do mestrado, na área de Realidade Aumentada aplicada à indústria.',
+      'pubs.readCta': 'Ler artigo',
+      'results.eyebrow': 'Resultados',
+      'results.title': 'Avaliação de usabilidade e aceitação',
+      'results.text': 'A aplicação foi avaliada por especialistas de domínio e usuários finais, com base nos questionários SUS (System Usability Scale) e TAM (Technology Acceptance Model).',
+      'results.colGroup': 'Grupo',
+      'results.rowExperts': 'Especialistas',
+      'results.rowUsers': 'Usuários Finais',
+      'results.pubEyebrow': 'Publicação',
+      'results.pubTitle': 'Tutoriais AR Interativos: Uma Ferramenta Simplificada para Indústria 5.0',
+      'results.pubText': 'SBAI 2025 — Simpósio Brasileiro de Automação Inteligente.',
+      'setup.eyebrow': 'Como executar',
+      'setup.title': 'Compilando o projeto',
+      'setup.text': 'Requisitos: Unity 2022 LTS ou superior, Android SDK, OpenJDK e Android Build Support.',
+      'setup.step1Title': 'Configurar o banco de dados',
+      'setup.step1Text': 'Criar conta e cluster no MongoDB Atlas, criar o banco de dados e a coleção de tutoriais, configurar usuário e IPs autorizados.',
+      'setup.step2Title': 'Conectar a connection string',
+      'setup.step2Text': 'Inserir a Connection String do MongoDB nos scripts responsáveis pela conexão com o banco.',
+      'setup.step3Title': 'Configurar o repositório de objetos',
+      'setup.step3Text': 'Hospedar os Asset Bundles (Google Drive, Azure Blob Storage, AWS S3, servidor HTTP ou NAS corporativo) e associar as URLs aos registros no banco.',
+      'setup.step4Title': 'Gerar o build',
+      'setup.step4Text': 'No Unity: File → Build Settings → Android → Switch Platform → Build (ou Build App Bundle para o Google Play).',
+      'contact.eyebrow': 'Contato',
+      'contact.title': 'Explore o projeto',
+      'contact.text': 'Código-fonte, dissertação e informações sobre o autor.',
+      'contact.repoTitle': 'Repositório',
+      'contact.repoText': 'Código-fonte completo da aplicação Unity.',
+      'contact.repoCta': 'Abrir no GitHub',
+      'contact.authorTitle': 'Autor',
+      'contact.authorText': 'Rodrigo José de Paiva — PROFICAM, Universidade Federal de São João del-Rei (UFSJ).',
+      'contact.authorCta': 'Perfil no GitHub',
+      'contact.licenseTitle': 'Licença',
+      'contact.licenseText': 'Projeto disponibilizado para fins acadêmicos e científicos.',
+      'contact.licenseCta': 'Ver licença',
+      'footer.text': '© 2025 Rodrigo José de Paiva. AR Tutorial Master Degree — PROFICAM / UFSJ.'
+    },
+    en: {
+      'nav.about': 'About',
+      'nav.features': 'Features',
+      'nav.architecture': 'Architecture',
+      'nav.stack': 'Tech Stack',
+      'nav.publications': 'Publications',
+      'nav.results': 'Results',
+      'nav.contact': 'Contact',
+      'nav.cta': 'View repository',
+      'hero.eyebrow': "Master's Thesis · PROFICAM / UFSJ",
+      'hero.title': 'Augmented Reality Tutorials for Industry 5.0',
+      'hero.subtitle': 'A mobile application that lets you create, edit and view interactive AR tutorials — no code, no 3D modeling required.',
+      'hero.intro': 'Built with Unity + Vuforia for Android, the solution uses image targets to overlay virtual instructions onto real equipment, supporting training, maintenance and knowledge transfer.',
+      'hero.ctaPrimary': 'View repository',
+      'hero.ctaSecondary': 'Learn more',
+      'hero.badge1': 'SUS Experts: 85.60',
+      'hero.badge2': 'SUS End Users: 92.57',
+      'hero.badge3': 'Published at SBAI 2025',
+      'about.eyebrow': 'About the project',
+      'about.title': 'What the application does',
+      'about.text1': 'The application uses marker-based Augmented Reality (Image Targets) to place virtual objects over real equipment, guiding users through operating procedures, maintenance, training and knowledge transfer.',
+      'about.card1Title': 'Tutorial creators',
+      'about.card1Text': 'Users with no background in programming, 3D modeling or AR development can build complete tutorials directly on their smartphone.',
+      'about.card2Title': 'End users',
+      'about.card2Text': 'View and execute procedures in the field, with virtual objects overlaid on the real equipment through the device camera.',
+      'features.eyebrow': 'Features',
+      'features.title': 'Complete tutorial and task management',
+      'features.text': 'Creation and editing tools designed for people without a technical background, plus a library of configurable virtual objects.',
+      'features.card1Title': 'Tutorials',
+      'features.card1Text': 'Create, edit, rename, delete and filter complete tutorials.',
+      'features.card2Title': 'Tasks',
+      'features.card2Text': 'Create, edit, delete, reorder and preview each step of the procedure.',
+      'features.card3Title': 'Virtual objects',
+      'features.card3Text': 'Directional arrows, attention/correct/incorrect/prohibition indicators, 3D text and virtual tools, each with configurable position, rotation, scale, color and text.',
+      'features.tag1': 'Directional Arrow',
+      'features.tag2': 'Clockwise Arrow',
+      'features.tag3': 'Counter-clockwise Arrow',
+      'features.tag4': '3D Text',
+      'features.tag5': 'Attention Indicator',
+      'features.tag6': 'Correct Indicator',
+      'features.tag7': 'Incorrect Indicator',
+      'features.tag8': 'Prohibition Indicator',
+      'features.tag9': 'Virtual Tools',
+      'arch.eyebrow': 'Architecture',
+      'arch.title': 'How the system is organized',
+      'arch.text': 'The database stores tutorials, tasks, virtual objects and their configurations; the object repository holds the models and assets used in the tutorials.',
+      'stack.eyebrow': 'Tech stack',
+      'stack.title': 'Tools used',
+      'stack.unity': 'Application development',
+      'stack.csharp': 'Programming',
+      'stack.vuforia': 'AR tracking',
+      'stack.mongo': 'Database',
+      'stack.android': 'Mobile platform',
+      'stack.blender': '3D modeling',
+      'stack.figma': 'Interface prototyping',
+      'stack.git': 'Version control',
+      'pubs.eyebrow': 'Publications',
+      'pubs.title': "Articles published by the author",
+      'pubs.text': 'Papers published throughout undergraduate and master\'s studies, in the field of Augmented Reality applied to industry.',
+      'pubs.readCta': 'Read article',
+      'results.eyebrow': 'Results',
+      'results.title': 'Usability and acceptance evaluation',
+      'results.text': 'The application was evaluated by domain experts and end users, based on the SUS (System Usability Scale) and TAM (Technology Acceptance Model) questionnaires.',
+      'results.colGroup': 'Group',
+      'results.rowExperts': 'Experts',
+      'results.rowUsers': 'End Users',
+      'results.pubEyebrow': 'Publication',
+      'results.pubTitle': 'Interactive AR Tutorials: A Simplified Tool for Industry 5.0',
+      'results.pubText': 'SBAI 2025 — Brazilian Symposium on Intelligent Automation.',
+      'setup.eyebrow': 'Getting started',
+      'setup.title': 'Building the project',
+      'setup.text': 'Requirements: Unity 2022 LTS or later, Android SDK, OpenJDK and Android Build Support.',
+      'setup.step1Title': 'Set up the database',
+      'setup.step1Text': 'Create an account and cluster on MongoDB Atlas, create the database and the tutorials collection, configure a user and authorized IPs.',
+      'setup.step2Title': 'Connect the connection string',
+      'setup.step2Text': 'Insert the MongoDB connection string into the scripts responsible for the database connection.',
+      'setup.step3Title': 'Set up the object repository',
+      'setup.step3Text': 'Host the asset bundles (Google Drive, Azure Blob Storage, AWS S3, HTTP server or corporate NAS) and associate the URLs with the database records.',
+      'setup.step4Title': 'Generate the build',
+      'setup.step4Text': 'In Unity: File → Build Settings → Android → Switch Platform → Build (or Build App Bundle for Google Play).',
+      'contact.eyebrow': 'Contact',
+      'contact.title': 'Explore the project',
+      'contact.text': 'Source code, thesis and author information.',
+      'contact.repoTitle': 'Repository',
+      'contact.repoText': 'Full source code of the Unity application.',
+      'contact.repoCta': 'Open on GitHub',
+      'contact.authorTitle': 'Author',
+      'contact.authorText': 'Rodrigo José de Paiva — PROFICAM, Federal University of São João del-Rei (UFSJ).',
+      'contact.authorCta': 'GitHub profile',
+      'contact.licenseTitle': 'License',
+      'contact.licenseText': 'Project made available for academic and scientific purposes.',
+      'contact.licenseCta': 'View license',
+      'footer.text': '© 2025 Rodrigo José de Paiva. AR Tutorial Master Degree — PROFICAM / UFSJ.'
+    }
+  };
+
+  const langToggle = document.getElementById('langToggle');
+
+  function applyLang(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.textContent = translations[lang][key];
+      }
+    });
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    langToggle.textContent = lang === 'pt' ? 'EN' : 'PT';
+    localStorage.setItem('lang', lang);
+  }
+
+  langToggle.addEventListener('click', () => {
+    const current = localStorage.getItem('lang') || 'pt';
+    applyLang(current === 'pt' ? 'en' : 'pt');
+  });
+
+  applyLang(localStorage.getItem('lang') || 'pt');
+</script>
+
+</body>
+</html>
