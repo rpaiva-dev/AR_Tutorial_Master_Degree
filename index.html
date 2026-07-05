@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AR Tutorial Master Degree — Tutoriais Interativos de Realidade Aumentada</title>
-<meta name="description" content="Aplicação móvel de Realidade Aumentada para criação, edição e visualização de tutoriais interativos na Indústria 5.0, desenvolvida em Unity + Vuforia.">
+<title>AR Tutorial Master's Degree — Interactive Augmented Reality Tutorials</title>
+<meta name="description" content="A mobile Augmented Reality application for creating, editing and viewing interactive tutorials for Industry 5.0, built with Unity + Vuforia.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -49,6 +49,14 @@
   .section-alt { background: var(--bg-soft); }
   .section-dark { background: var(--dark); color: #fff; }
   .section-dark .text-soft { color: rgba(255,255,255,0.65); }
+
+  .text-link {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color var(--transition);
+  }
+
+  .text-link:hover { color: var(--accent); }
 
   .eyebrow {
     display: inline-block;
@@ -97,6 +105,7 @@
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
+    column-gap: 24px;
   }
 
   .nav-links {
@@ -501,17 +510,16 @@
 <header>
   <nav>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#sobre" data-i18n="nav.about">Sobre</a></li>
-      <li><a href="#funcionalidades" data-i18n="nav.features">Funcionalidades</a></li>
-      <li><a href="#arquitetura" data-i18n="nav.architecture">Arquitetura</a></li>
-      <li><a href="#tecnologias" data-i18n="nav.stack">Tecnologias</a></li>
-      <li><a href="#publicacoes" data-i18n="nav.publications">Publicações</a></li>
-      <li><a href="#resultados" data-i18n="nav.results">Resultados</a></li>
-      <li><a href="#contato" data-i18n="nav.contact">Contato</a></li>
+      <li><a href="#sobre" data-i18n="nav.about">About</a></li>
+      <li><a href="#funcionalidades" data-i18n="nav.features">Features</a></li>
+      <li><a href="#arquitetura" data-i18n="nav.architecture">Architecture</a></li>
+      <li><a href="#tecnologias" data-i18n="nav.stack">Tech Stack</a></li>
+      <li><a href="#publicacoes" data-i18n="nav.publications">Publications</a></li>
+      <li><a href="#resultados" data-i18n="nav.results">Results</a></li>
+      <li><a href="#contato" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <button class="lang-toggle" id="langToggle">EN</button>
-      <a class="btn btn-primary" href="https://github.com/rpaiva-dev/ar_tutorial_master_degree" target="_blank" rel="noopener" data-i18n="nav.cta">Ver repositório</a>
+      <button class="lang-toggle" id="langToggle">PT</button>
       <button class="nav-toggle" id="navToggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -521,18 +529,18 @@
 
 <section class="hero">
   <div class="container">
-    <span class="eyebrow" data-i18n="hero.eyebrow">Dissertação de Mestrado · PROFICAM </span>
-    <h1 data-i18n="hero.title">Tutoriais de Realidade Aumentada para a Indústria 5.0</h1>
-    <p class="subtitle" data-i18n="hero.subtitle">Uma aplicação móvel que permite criar, editar e visualizar tutoriais interativos em RA — sem escrever código, sem modelar em 3D.</p>
-    <p class="intro" data-i18n="hero.intro">Desenvolvida em Unity + Vuforia para Android, a solução usa marcadores de imagem para sobrepor instruções virtuais a equipamentos reais, apoiando treinamento, manutenção e transferência de conhecimento.</p>
+    <span class="eyebrow" data-i18n="hero.eyebrow">Master's Thesis · <a class="text-link" href="https://proficam.ufop.br/" target="_blank" rel="noopener">PROFICAM ITV/UFOP</a></span>
+    <h1 data-i18n="hero.title">Augmented Reality Tutorials for Industry 5.0</h1>
+    <p class="subtitle" data-i18n="hero.subtitle">A mobile application that lets you create, edit and view interactive AR tutorials — no code, no 3D modeling required.</p>
+    <p class="intro" data-i18n="hero.intro">Built with Unity + Vuforia for Android, the solution uses image targets to overlay virtual instructions onto real equipment, supporting training, maintenance and knowledge transfer.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="https://github.com/rpaiva-dev/ar_tutorial_master_degree" target="_blank" rel="noopener" data-i18n="hero.ctaPrimary">Ver repositório</a>
-      <a class="btn btn-outline" href="#sobre" data-i18n="hero.ctaSecondary">Saiba mais</a>
+      <a class="btn btn-primary" href="https://github.com/rpaiva-dev/ar_tutorial_master_degree" target="_blank" rel="noopener" data-i18n="hero.ctaPrimary">View repository</a>
+      <a class="btn btn-outline" href="#sobre" data-i18n="hero.ctaSecondary">Learn more</a>
     </div>
     <div class="hero-badges">
-      <span class="hero-badge" data-i18n="hero.badge1">SUS Especialistas: 85,60</span>
-      <span class="hero-badge" data-i18n="hero.badge2">SUS Usuários Finais: 92,57</span>
-      <span class="hero-badge" data-i18n="hero.badge3">Publicado no SBAI 2025</span>
+      <span class="hero-badge" data-i18n="hero.badge1">SUS Experts: 85.60</span>
+      <span class="hero-badge" data-i18n="hero.badge2">SUS End Users: 92.57</span>
+      <span class="hero-badge" data-i18n="hero.badge3">Published at SBAI 2025</span>
     </div>
   </div>
 </section>
@@ -540,20 +548,20 @@
 <section class="section" id="sobre">
   <div class="container">
     <div class="section-intro reveal">
-      <span class="eyebrow" data-i18n="about.eyebrow">Sobre o projeto</span>
-      <h2 data-i18n="about.title">O que a aplicação faz</h2>
-      <p data-i18n="about.text1">A aplicação utiliza Realidade Aumentada baseada em marcadores (Image Targets) para posicionar objetos virtuais sobre equipamentos reais, orientando usuários durante procedimentos operacionais, manutenção, treinamento e transferência de conhecimento.</p>
+      <span class="eyebrow" data-i18n="about.eyebrow">About the project</span>
+      <h2 data-i18n="about.title">What the application does</h2>
+      <p data-i18n="about.text1">The application uses marker-based Augmented Reality (Image Targets) to place virtual objects over real equipment, guiding users through operating procedures, maintenance, training and knowledge transfer.</p>
     </div>
     <div class="grid-2">
       <div class="project-card reveal">
         <div class="card-icon">🛠️</div>
-        <h3 data-i18n="about.card1Title">Criadores de tutoriais</h3>
-        <p data-i18n="about.card1Text">Usuários sem conhecimento em programação, modelagem 3D ou desenvolvimento de RA conseguem montar tutoriais completos diretamente no smartphone.</p>
+        <h3 data-i18n="about.card1Title">Tutorial creators</h3>
+        <p data-i18n="about.card1Text">Users with no background in programming, 3D modeling or AR development can build complete tutorials directly on their smartphone.</p>
       </div>
       <div class="project-card reveal">
         <div class="card-icon">📱</div>
-        <h3 data-i18n="about.card2Title">Usuários finais</h3>
-        <p data-i18n="about.card2Text">Visualizam e executam os procedimentos em campo, com objetos virtuais sobrepostos ao equipamento real através da câmera do dispositivo.</p>
+        <h3 data-i18n="about.card2Title">End users</h3>
+        <p data-i18n="about.card2Text">View and execute procedures in the field, with virtual objects overlaid on the real equipment through the device camera.</p>
       </div>
     </div>
   </div>
@@ -562,37 +570,37 @@
 <section class="section section-alt" id="funcionalidades">
   <div class="container">
     <div class="section-intro reveal">
-      <span class="eyebrow" data-i18n="features.eyebrow">Funcionalidades</span>
-      <h2 data-i18n="features.title">Gerenciamento completo de tutoriais e tarefas</h2>
-      <p data-i18n="features.text">Ferramentas de criação e edição pensadas para quem não tem background técnico, além de uma biblioteca de objetos virtuais configuráveis.</p>
+      <span class="eyebrow" data-i18n="features.eyebrow">Features</span>
+      <h2 data-i18n="features.title">Complete tutorial and task management</h2>
+      <p data-i18n="features.text">Creation and editing tools designed for people without a technical background, plus a library of configurable virtual objects.</p>
     </div>
     <div class="grid-3">
       <div class="project-card reveal">
         <div class="card-icon">📋</div>
-        <h3 data-i18n="features.card1Title">Tutoriais</h3>
-        <p data-i18n="features.card1Text">Criar, editar, renomear, excluir e filtrar tutoriais completos.</p>
+        <h3 data-i18n="features.card1Title">Tutorials</h3>
+        <p data-i18n="features.card1Text">Create, edit, rename, delete and filter complete tutorials.</p>
       </div>
       <div class="project-card reveal">
         <div class="card-icon">✅</div>
-        <h3 data-i18n="features.card2Title">Tarefas</h3>
-        <p data-i18n="features.card2Text">Criar, editar, excluir, reordenar e pré-visualizar cada etapa do procedimento.</p>
+        <h3 data-i18n="features.card2Title">Tasks</h3>
+        <p data-i18n="features.card2Text">Create, edit, delete, reorder and preview each step of the procedure.</p>
       </div>
       <div class="project-card reveal">
         <div class="card-icon">🧩</div>
-        <h3 data-i18n="features.card3Title">Objetos virtuais</h3>
-        <p data-i18n="features.card3Text">Setas direcionais, indicadores de atenção/correto/incorreto/proibição, texto 3D e ferramentas virtuais, cada um com posição, rotação, escala, cor e texto configuráveis.</p>
+        <h3 data-i18n="features.card3Title">Virtual objects</h3>
+        <p data-i18n="features.card3Text">Directional arrows, attention/correct/incorrect/prohibition indicators, 3D text and virtual tools, each with configurable position, rotation, scale, color and text.</p>
       </div>
     </div>
     <div class="tag-list reveal">
-      <span data-i18n="features.tag1">Seta Direcional</span>
-      <span data-i18n="features.tag2">Seta Horária</span>
-      <span data-i18n="features.tag3">Seta Anti-horária</span>
-      <span data-i18n="features.tag4">Texto 3D</span>
-      <span data-i18n="features.tag5">Indicador de Atenção</span>
-      <span data-i18n="features.tag6">Indicador de Correto</span>
-      <span data-i18n="features.tag7">Indicador de Incorreto</span>
-      <span data-i18n="features.tag8">Indicador de Proibição</span>
-      <span data-i18n="features.tag9">Ferramentas Virtuais</span>
+      <span data-i18n="features.tag1">Directional Arrow</span>
+      <span data-i18n="features.tag2">Clockwise Arrow</span>
+      <span data-i18n="features.tag3">Counter-clockwise Arrow</span>
+      <span data-i18n="features.tag4">3D Text</span>
+      <span data-i18n="features.tag5">Attention Indicator</span>
+      <span data-i18n="features.tag6">Correct Indicator</span>
+      <span data-i18n="features.tag7">Incorrect Indicator</span>
+      <span data-i18n="features.tag8">Prohibition Indicator</span>
+      <span data-i18n="features.tag9">Virtual Tools</span>
     </div>
   </div>
 </section>
@@ -600,20 +608,20 @@
 <section class="section" id="arquitetura">
   <div class="container">
     <div class="section-intro reveal">
-      <span class="eyebrow" data-i18n="arch.eyebrow">Arquitetura</span>
-      <h2 data-i18n="arch.title">Como o sistema é organizado</h2>
-      <p data-i18n="arch.text">O banco de dados armazena tutoriais, tarefas, objetos virtuais e suas configurações; o repositório de objetos guarda os modelos e recursos usados nos tutoriais.</p>
+      <span class="eyebrow" data-i18n="arch.eyebrow">Architecture</span>
+      <h2 data-i18n="arch.title">How the system is organized</h2>
+      <p data-i18n="arch.text">The database stores tutorials, tasks, virtual objects and their configurations; the object repository holds the models and assets used in the tutorials.</p>
     </div>
-    <div class="arch-box reveal">Usuário
+    <div class="arch-box reveal" data-i18n="arch.diagram">User
    │
    ▼
-Aplicação Android
+Android App
 (Unity + Vuforia)
    │
-   ├── Banco de Dados
+   ├── Database
    │      (MongoDB Atlas)
    │
-   └── Repositório de Objetos
+   └── Object Repository
           (Asset Bundles)</div>
   </div>
 </section>
@@ -621,49 +629,49 @@ Aplicação Android
 <section class="section section-alt" id="tecnologias">
   <div class="container">
     <div class="section-intro reveal">
-      <span class="eyebrow" data-i18n="stack.eyebrow">Stack tecnológica</span>
-      <h2 data-i18n="stack.title">Ferramentas utilizadas</h2>
+      <span class="eyebrow" data-i18n="stack.eyebrow">Tech stack</span>
+      <h2 data-i18n="stack.title">Tools used</h2>
     </div>
     <div class="grid-4">
       <div class="tech-item reveal">
         <div class="tech-icon">🎮</div>
         <h4>Unity</h4>
-        <p data-i18n="stack.unity">Desenvolvimento da aplicação</p>
+        <p data-i18n="stack.unity">Application development</p>
       </div>
       <div class="tech-item reveal">
         <div class="tech-icon">💠</div>
         <h4>C#</h4>
-        <p data-i18n="stack.csharp">Programação</p>
+        <p data-i18n="stack.csharp">Programming</p>
       </div>
       <div class="tech-item reveal">
         <div class="tech-icon">🎯</div>
         <h4>Vuforia Engine</h4>
-        <p data-i18n="stack.vuforia">Rastreamento em RA</p>
+        <p data-i18n="stack.vuforia">AR tracking</p>
       </div>
       <div class="tech-item reveal">
         <div class="tech-icon">🍃</div>
         <h4>MongoDB Atlas</h4>
-        <p data-i18n="stack.mongo">Banco de dados</p>
+        <p data-i18n="stack.mongo">Database</p>
       </div>
       <div class="tech-item reveal">
         <div class="tech-icon">🤖</div>
         <h4>Android</h4>
-        <p data-i18n="stack.android">Plataforma móvel</p>
+        <p data-i18n="stack.android">Mobile platform</p>
       </div>
       <div class="tech-item reveal">
         <div class="tech-icon">🧱</div>
         <h4>Blender</h4>
-        <p data-i18n="stack.blender">Modelagem 3D</p>
+        <p data-i18n="stack.blender">3D modeling</p>
       </div>
       <div class="tech-item reveal">
         <div class="tech-icon">🎨</div>
         <h4>Figma</h4>
-        <p data-i18n="stack.figma">Prototipação de interface</p>
+        <p data-i18n="stack.figma">Interface prototyping</p>
       </div>
       <div class="tech-item reveal">
         <div class="tech-icon">🔧</div>
         <h4>Git</h4>
-        <p data-i18n="stack.git">Controle de versão</p>
+        <p data-i18n="stack.git">Version control</p>
       </div>
     </div>
   </div>
@@ -672,28 +680,28 @@ Aplicação Android
 <section class="section" id="publicacoes">
   <div class="container">
     <div class="section-intro reveal">
-      <span class="eyebrow" data-i18n="pubs.eyebrow">Publicações</span>
-      <h2 data-i18n="pubs.title">Artigos publicados pelo autor</h2>
-      <p data-i18n="pubs.text">Trabalhos publicados ao longo da graduação e do mestrado, na área de Realidade Aumentada aplicada à indústria.</p>
+      <span class="eyebrow" data-i18n="pubs.eyebrow">Publications</span>
+      <h2 data-i18n="pubs.title">Articles published by the author</h2>
+      <p data-i18n="pubs.text">Papers published throughout undergraduate and master's studies, in the field of Augmented Reality applied to industry.</p>
     </div>
     <div class="steps">
       <div class="pub-card reveal">
         <span class="eyebrow">2021 · SBAI</span>
         <h3>Realidade aumentada na criação de tutoriais para a Indústria 4.0</h3>
         <p>Rodrigo José de Paiva, Rone Ilídio da Silva — Universidade Federal de São João del-Rei (UFSJ), Campus Alto Paraopeba.</p>
-        <a class="btn btn-outline" style="margin-top:16px" href="https://www.sba.org.br/open_journal_systems/index.php/sbai/article/view/2570" target="_blank" rel="noopener" data-i18n="pubs.readCta">Ler artigo</a>
+        <a class="btn btn-outline" style="margin-top:16px" href="https://www.sba.org.br/open_journal_systems/index.php/sbai/article/view/2570" target="_blank" rel="noopener" data-i18n="pubs.readCta">Read article</a>
       </div>
       <div class="pub-card reveal">
         <span class="eyebrow">2023 · SBCUP</span>
         <h3>Ferramenta para Criação de Tutoriais em Realidade Aumentada para a Indústria 4.0</h3>
         <p>Victor A. Vieira, Rodrigo J. Paiva, Rone I. Silva — Universidade Federal de São João del-Rei (UFSJ).</p>
-        <a class="btn btn-outline" style="margin-top:16px" href="https://sol.sbc.org.br/index.php/sbcup/article/view/24996" target="_blank" rel="noopener" data-i18n="pubs.readCta">Ler artigo</a>
+        <a class="btn btn-outline" style="margin-top:16px" href="https://sol.sbc.org.br/index.php/sbcup/article/view/24996" target="_blank" rel="noopener" data-i18n="pubs.readCta">Read article</a>
       </div>
       <div class="pub-card reveal">
         <span class="eyebrow">2025 · SBAI</span>
         <h3>Tutoriais AR Interativos: Uma Ferramenta Simplificada para Indústria 5.0</h3>
         <p>Rodrigo José de Paiva (UFOP), Flávia Paulucci Cianga Silvas (ITV), Rone Ilídio da Silva (UFSJ), Saul Delabrida (UFOP).</p>
-        <a class="btn btn-outline" style="margin-top:16px" href="https://www.sba.org.br/open_journal_systems/index.php/sbai/article/view/5072" target="_blank" rel="noopener" data-i18n="pubs.readCta">Ler artigo</a>
+        <a class="btn btn-outline" style="margin-top:16px" href="https://www.sba.org.br/open_journal_systems/index.php/sbai/article/view/5072" target="_blank" rel="noopener" data-i18n="pubs.readCta">Read article</a>
       </div>
     </div>
   </div>
@@ -702,38 +710,38 @@ Aplicação Android
 <section class="section section-alt" id="resultados">
   <div class="container">
     <div class="section-intro reveal">
-      <span class="eyebrow" data-i18n="results.eyebrow">Resultados</span>
-      <h2 data-i18n="results.title">Avaliação de usabilidade e aceitação</h2>
-      <p data-i18n="results.text">A aplicação foi avaliada por especialistas de domínio e usuários finais, com base nos questionários SUS (System Usability Scale) e TAM (Technology Acceptance Model).</p>
+      <span class="eyebrow" data-i18n="results.eyebrow">Results</span>
+      <h2 data-i18n="results.title">Usability and acceptance evaluation</h2>
+      <p data-i18n="results.text">The application was evaluated by domain experts and end users, based on the SUS (System Usability Scale) and TAM (Technology Acceptance Model) questionnaires.</p>
     </div>
     <div style="overflow-x:auto" class="reveal">
       <table class="results-table">
         <thead>
           <tr>
-            <th data-i18n="results.colGroup">Grupo</th>
+            <th data-i18n="results.colGroup">Group</th>
             <th>SUS</th>
             <th>TAM</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td data-i18n="results.rowExperts">Especialistas</td>
-            <td>85,60</td>
-            <td>4,47</td>
+            <td data-i18n="results.rowExperts">Experts</td>
+            <td data-i18n="results.susExperts">85.60</td>
+            <td data-i18n="results.tamExperts">4.47</td>
           </tr>
           <tr>
-            <td data-i18n="results.rowUsers">Usuários Finais</td>
-            <td>92,57</td>
-            <td>4,68</td>
+            <td data-i18n="results.rowUsers">End Users</td>
+            <td data-i18n="results.susUsers">92.57</td>
+            <td data-i18n="results.tamUsers">4.68</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div style="margin-top:48px" class="pub-card reveal">
-      <span class="eyebrow" data-i18n="results.pubEyebrow">Publicação</span>
-      <h3 data-i18n="results.pubTitle">Tutoriais AR Interativos: Uma Ferramenta Simplificada para Indústria 5.0</h3>
-      <p data-i18n="results.pubText">SBAI 2025 — Simpósio Brasileiro de Automação Inteligente.</p>
+      <span class="eyebrow" data-i18n="results.pubEyebrow">Publication</span>
+      <h3 data-i18n="results.pubTitle">Interactive AR Tutorials: A Simplified Tool for Industry 5.0</h3>
+      <p data-i18n="results.pubText">SBAI 2025 — Brazilian Symposium on Intelligent Automation.</p>
     </div>
   </div>
 </section>
@@ -741,37 +749,37 @@ Aplicação Android
 <section class="section" id="como-usar">
   <div class="container">
     <div class="section-intro reveal">
-      <span class="eyebrow" data-i18n="setup.eyebrow">Como executar</span>
-      <h2 data-i18n="setup.title">Compilando o projeto</h2>
-      <p data-i18n="setup.text">Requisitos: Unity 2022 LTS ou superior, Android SDK, OpenJDK e Android Build Support.</p>
+      <span class="eyebrow" data-i18n="setup.eyebrow">Getting started</span>
+      <h2 data-i18n="setup.title">Building the project</h2>
+      <p data-i18n="setup.text">Requirements: Unity 2022 LTS or later, Android SDK, OpenJDK and Android Build Support.</p>
     </div>
     <div class="steps">
       <div class="step reveal">
         <div class="step-num">1</div>
         <div>
-          <h4 data-i18n="setup.step1Title">Configurar o banco de dados</h4>
-          <p data-i18n="setup.step1Text">Criar conta e cluster no MongoDB Atlas, criar o banco de dados e a coleção de tutoriais, configurar usuário e IPs autorizados.</p>
+          <h4 data-i18n="setup.step1Title">Set up the database</h4>
+          <p data-i18n="setup.step1Text">Create an account and cluster on MongoDB Atlas, create the database and the tutorials collection, configure a user and authorized IPs.</p>
         </div>
       </div>
       <div class="step reveal">
         <div class="step-num">2</div>
         <div>
-          <h4 data-i18n="setup.step2Title">Conectar a connection string</h4>
-          <p data-i18n="setup.step2Text">Inserir a Connection String do MongoDB nos scripts responsáveis pela conexão com o banco.</p>
+          <h4 data-i18n="setup.step2Title">Connect the connection string</h4>
+          <p data-i18n="setup.step2Text">Insert the MongoDB connection string into the scripts responsible for the database connection.</p>
         </div>
       </div>
       <div class="step reveal">
         <div class="step-num">3</div>
         <div>
-          <h4 data-i18n="setup.step3Title">Configurar o repositório de objetos</h4>
-          <p data-i18n="setup.step3Text">Hospedar os Asset Bundles (Google Drive, Azure Blob Storage, AWS S3, servidor HTTP ou NAS corporativo) e associar as URLs aos registros no banco.</p>
+          <h4 data-i18n="setup.step3Title">Set up the object repository</h4>
+          <p data-i18n="setup.step3Text">Host the asset bundles (Google Drive, Azure Blob Storage, AWS S3, HTTP server or corporate NAS) and associate the URLs with the database records.</p>
         </div>
       </div>
       <div class="step reveal">
         <div class="step-num">4</div>
         <div>
-          <h4 data-i18n="setup.step4Title">Gerar o build</h4>
-          <p data-i18n="setup.step4Text">No Unity: File → Build Settings → Android → Switch Platform → Build (ou Build App Bundle para o Google Play).</p>
+          <h4 data-i18n="setup.step4Title">Generate the build</h4>
+          <p data-i18n="setup.step4Text">In Unity: File → Build Settings → Android → Switch Platform → Build (or Build App Bundle for Google Play).</p>
         </div>
       </div>
     </div>
@@ -781,28 +789,28 @@ Aplicação Android
 <section class="section-dark section" id="contato">
   <div class="container">
     <div class="section-intro reveal">
-      <span class="eyebrow" data-i18n="contact.eyebrow">Contato</span>
-      <h2 data-i18n="contact.title">Explore o projeto</h2>
-      <p class="text-soft" data-i18n="contact.text">Código-fonte, dissertação e informações sobre o autor.</p>
+      <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
+      <h2 data-i18n="contact.title">Explore the project</h2>
+      <p class="text-soft" data-i18n="contact.text">Source code, thesis and author information.</p>
     </div>
     <div class="contact-grid">
       <div class="contact-card reveal">
         <div class="card-icon">💻</div>
-        <h3 data-i18n="contact.repoTitle">Repositório</h3>
-        <p data-i18n="contact.repoText">Código-fonte completo da aplicação Unity.</p>
-        <a class="btn btn-outline" href="https://github.com/rpaiva-dev/ar_tutorial_master_degree" target="_blank" rel="noopener" data-i18n="contact.repoCta">Abrir no GitHub</a>
+        <h3 data-i18n="contact.repoTitle">Repository</h3>
+        <p data-i18n="contact.repoText">Full source code of the Unity application.</p>
+        <a class="btn btn-outline" href="https://github.com/rpaiva-dev/ar_tutorial_master_degree" target="_blank" rel="noopener" data-i18n="contact.repoCta">Open on GitHub</a>
       </div>
       <div class="contact-card reveal">
         <div class="card-icon">🎓</div>
-        <h3 data-i18n="contact.authorTitle">Autor</h3>
-        <p data-i18n="contact.authorText">Rodrigo José de Paiva — PROFICAM, Universidade Federal de São João del-Rei (UFSJ).</p>
-        <a class="btn btn-outline" href="https://github.com/rpaiva-dev" target="_blank" rel="noopener" data-i18n="contact.authorCta">Perfil no GitHub</a>
+        <h3 data-i18n="contact.authorTitle">Author</h3>
+        <p data-i18n="contact.authorText">Rodrigo José de Paiva — <a class="text-link" href="https://proficam.ufop.br/" target="_blank" rel="noopener">PROFICAM ITV/UFOP</a>.</p>
+        <a class="btn btn-outline" href="https://github.com/rpaiva-dev" target="_blank" rel="noopener" data-i18n="contact.authorCta">GitHub profile</a>
       </div>
       <div class="contact-card reveal">
         <div class="card-icon">📄</div>
-        <h3 data-i18n="contact.licenseTitle">Licença</h3>
-        <p data-i18n="contact.licenseText">Projeto disponibilizado para fins acadêmicos e científicos.</p>
-        <a class="btn btn-outline" href="https://github.com/rpaiva-dev/ar_tutorial_master_degree/blob/main/LICENSE" target="_blank" rel="noopener" data-i18n="contact.licenseCta">Ver licença</a>
+        <h3 data-i18n="contact.licenseTitle">License</h3>
+        <p data-i18n="contact.licenseText">Project made available for academic and scientific purposes.</p>
+        <a class="btn btn-outline" href="https://github.com/rpaiva-dev/ar_tutorial_master_degree/blob/main/LICENSE" target="_blank" rel="noopener" data-i18n="contact.licenseCta">View license</a>
       </div>
     </div>
   </div>
@@ -810,7 +818,7 @@ Aplicação Android
 
 <footer>
   <div class="container">
-    <p data-i18n="footer.text">&copy; 2025 Rodrigo José de Paiva. AR Tutorial Master Degree — PROFICAM / UFSJ.</p>
+    <p data-i18n="footer.text">&copy; 2025 Rodrigo José de Paiva. AR Tutorial Master's Degree — <a class="text-link" href="https://proficam.ufop.br/" target="_blank" rel="noopener">PROFICAM ITV/UFOP</a>.</p>
   </div>
 </footer>
 
@@ -847,8 +855,7 @@ Aplicação Android
       'nav.publications': 'Publicações',
       'nav.results': 'Resultados',
       'nav.contact': 'Contato',
-      'nav.cta': 'Ver repositório',
-      'hero.eyebrow': 'Dissertação de Mestrado · PROFICAM / UFSJ',
+      'hero.eyebrow': 'Dissertação de Mestrado · <a class="text-link" href="https://proficam.ufop.br/" target="_blank" rel="noopener">PROFICAM ITV/UFOP</a>',
       'hero.title': 'Tutoriais de Realidade Aumentada para a Indústria 5.0',
       'hero.subtitle': 'Uma aplicação móvel que permite criar, editar e visualizar tutoriais interativos em RA — sem escrever código, sem modelar em 3D.',
       'hero.intro': 'Desenvolvida em Unity + Vuforia para Android, a solução usa marcadores de imagem para sobrepor instruções virtuais a equipamentos reais, apoiando treinamento, manutenção e transferência de conhecimento.',
@@ -885,6 +892,17 @@ Aplicação Android
       'arch.eyebrow': 'Arquitetura',
       'arch.title': 'Como o sistema é organizado',
       'arch.text': 'O banco de dados armazena tutoriais, tarefas, objetos virtuais e suas configurações; o repositório de objetos guarda os modelos e recursos usados nos tutoriais.',
+      'arch.diagram': `Usuário
+   │
+   ▼
+Aplicação Android
+(Unity + Vuforia)
+   │
+   ├── Banco de Dados
+   │      (MongoDB Atlas)
+   │
+   └── Repositório de Objetos
+          (Asset Bundles)`,
       'stack.eyebrow': 'Stack tecnológica',
       'stack.title': 'Ferramentas utilizadas',
       'stack.unity': 'Desenvolvimento da aplicação',
@@ -905,6 +923,10 @@ Aplicação Android
       'results.colGroup': 'Grupo',
       'results.rowExperts': 'Especialistas',
       'results.rowUsers': 'Usuários Finais',
+      'results.susExperts': '85,60',
+      'results.tamExperts': '4,47',
+      'results.susUsers': '92,57',
+      'results.tamUsers': '4,68',
       'results.pubEyebrow': 'Publicação',
       'results.pubTitle': 'Tutoriais AR Interativos: Uma Ferramenta Simplificada para Indústria 5.0',
       'results.pubText': 'SBAI 2025 — Simpósio Brasileiro de Automação Inteligente.',
@@ -926,12 +948,12 @@ Aplicação Android
       'contact.repoText': 'Código-fonte completo da aplicação Unity.',
       'contact.repoCta': 'Abrir no GitHub',
       'contact.authorTitle': 'Autor',
-      'contact.authorText': 'Rodrigo José de Paiva — PROFICAM, Universidade Federal de São João del-Rei (UFSJ).',
+      'contact.authorText': 'Rodrigo José de Paiva — <a class="text-link" href="https://proficam.ufop.br/" target="_blank" rel="noopener">PROFICAM ITV/UFOP</a>.',
       'contact.authorCta': 'Perfil no GitHub',
       'contact.licenseTitle': 'Licença',
       'contact.licenseText': 'Projeto disponibilizado para fins acadêmicos e científicos.',
       'contact.licenseCta': 'Ver licença',
-      'footer.text': '© 2025 Rodrigo José de Paiva. AR Tutorial Master Degree — PROFICAM / UFSJ.'
+      'footer.text': '© 2025 Rodrigo José de Paiva. AR Tutorial Master\'s Degree — <a class="text-link" href="https://proficam.ufop.br/" target="_blank" rel="noopener">PROFICAM ITV/UFOP</a>.'
     },
     en: {
       'nav.about': 'About',
@@ -941,8 +963,7 @@ Aplicação Android
       'nav.publications': 'Publications',
       'nav.results': 'Results',
       'nav.contact': 'Contact',
-      'nav.cta': 'View repository',
-      'hero.eyebrow': "Master's Thesis · PROFICAM / UFSJ",
+      'hero.eyebrow': 'Master\'s Thesis · <a class="text-link" href="https://proficam.ufop.br/" target="_blank" rel="noopener">PROFICAM ITV/UFOP</a>',
       'hero.title': 'Augmented Reality Tutorials for Industry 5.0',
       'hero.subtitle': 'A mobile application that lets you create, edit and view interactive AR tutorials — no code, no 3D modeling required.',
       'hero.intro': 'Built with Unity + Vuforia for Android, the solution uses image targets to overlay virtual instructions onto real equipment, supporting training, maintenance and knowledge transfer.',
@@ -979,6 +1000,17 @@ Aplicação Android
       'arch.eyebrow': 'Architecture',
       'arch.title': 'How the system is organized',
       'arch.text': 'The database stores tutorials, tasks, virtual objects and their configurations; the object repository holds the models and assets used in the tutorials.',
+      'arch.diagram': `User
+   │
+   ▼
+Android App
+(Unity + Vuforia)
+   │
+   ├── Database
+   │      (MongoDB Atlas)
+   │
+   └── Object Repository
+          (Asset Bundles)`,
       'stack.eyebrow': 'Tech stack',
       'stack.title': 'Tools used',
       'stack.unity': 'Application development',
@@ -999,6 +1031,10 @@ Aplicação Android
       'results.colGroup': 'Group',
       'results.rowExperts': 'Experts',
       'results.rowUsers': 'End Users',
+      'results.susExperts': '85.60',
+      'results.tamExperts': '4.47',
+      'results.susUsers': '92.57',
+      'results.tamUsers': '4.68',
       'results.pubEyebrow': 'Publication',
       'results.pubTitle': 'Interactive AR Tutorials: A Simplified Tool for Industry 5.0',
       'results.pubText': 'SBAI 2025 — Brazilian Symposium on Intelligent Automation.',
@@ -1020,12 +1056,12 @@ Aplicação Android
       'contact.repoText': 'Full source code of the Unity application.',
       'contact.repoCta': 'Open on GitHub',
       'contact.authorTitle': 'Author',
-      'contact.authorText': 'Rodrigo José de Paiva — PROFICAM, Federal University of São João del-Rei (UFSJ).',
+      'contact.authorText': 'Rodrigo José de Paiva — <a class="text-link" href="https://proficam.ufop.br/" target="_blank" rel="noopener">PROFICAM ITV/UFOP</a>.',
       'contact.authorCta': 'GitHub profile',
       'contact.licenseTitle': 'License',
       'contact.licenseText': 'Project made available for academic and scientific purposes.',
       'contact.licenseCta': 'View license',
-      'footer.text': '© 2025 Rodrigo José de Paiva. AR Tutorial Master Degree — PROFICAM / UFSJ.'
+      'footer.text': '© 2025 Rodrigo José de Paiva. AR Tutorial Master\'s Degree — <a class="text-link" href="https://proficam.ufop.br/" target="_blank" rel="noopener">PROFICAM ITV/UFOP</a>.'
     }
   };
 
@@ -1035,7 +1071,7 @@ Aplicação Android
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (translations[lang] && translations[lang][key]) {
-        el.textContent = translations[lang][key];
+        el.innerHTML = translations[lang][key];
       }
     });
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
@@ -1044,11 +1080,11 @@ Aplicação Android
   }
 
   langToggle.addEventListener('click', () => {
-    const current = localStorage.getItem('lang') || 'pt';
+    const current = localStorage.getItem('lang') || 'en';
     applyLang(current === 'pt' ? 'en' : 'pt');
   });
 
-  applyLang(localStorage.getItem('lang') || 'pt');
+  applyLang(localStorage.getItem('lang') || 'en');
 </script>
 
 </body>
