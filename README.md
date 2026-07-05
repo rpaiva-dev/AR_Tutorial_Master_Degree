@@ -1,109 +1,110 @@
+````markdown
 # Mobile_AR_Tutorial
 
-Aplicação móvel de Realidade Aumentada (AR) desenvolvida no contexto da dissertação de mestrado:
+A mobile Augmented Reality (AR) application developed as part of the master's dissertation:
 
-**Explorando a Realidade Aumentada na Indústria 5.0: Impacto e Usabilidade de Ferramentas para Criação de Tutoriais**
+**Exploring Augmented Reality in Industry 5.0: Impact and Usability of Tools for Creating Tutorials**
 
-O objetivo da aplicação é permitir que usuários sem conhecimentos em programação, modelagem 3D ou desenvolvimento de aplicações de Realidade Aumentada possam criar, editar e visualizar tutoriais interativos diretamente em dispositivos móveis Android.
-
----
-
-# Visão Geral
-
-A aplicação utiliza Realidade Aumentada baseada em marcadores (*Image Targets*) para posicionar objetos virtuais sobre equipamentos reais. Esses objetos são utilizados para orientar usuários durante a execução de procedimentos operacionais, manutenção, treinamento e transferência de conhecimento.
-
-O sistema suporta dois perfis principais de utilização:
-
-* **Criadores de tutoriais:** responsáveis pela criação e edição das instruções.
-* **Usuários finais:** responsáveis pela visualização e execução dos procedimentos.
+The purpose of this application is to enable users with no prior knowledge of programming, 3D modeling, or Augmented Reality application development to create, edit, and visualize interactive tutorials directly on Android mobile devices.
 
 ---
 
-# Principais Funcionalidades
+# Overview
 
-## Gerenciamento de Tutoriais
+The application uses marker-based Augmented Reality (*Image Targets*) to position virtual objects on real-world equipment. These objects are used to guide users during operational procedures, maintenance activities, training sessions, and knowledge transfer processes.
 
-* Criar tutoriais
-* Editar tutoriais
-* Renomear tutoriais
-* Excluir tutoriais
-* Filtrar tutoriais
+The system supports two primary user profiles:
 
-## Gerenciamento de Tarefas
-
-* Criar tarefas
-* Editar tarefas
-* Excluir tarefas
-* Reordenar tarefas
-* Pré-visualizar tarefas
-
-## Objetos Virtuais
-
-A aplicação permite a utilização dos seguintes elementos:
-
-* Seta Direcional
-* Seta Horária
-* Seta Anti-horária
-* Texto 3D
-* Indicador de Atenção
-* Indicador de Correto
-* Indicador de Incorreto
-* Indicador de Proibição
-* Ferramentas Virtuais
-
-Cada objeto pode ter suas propriedades configuradas individualmente:
-
-* Posição
-* Rotação
-* Escala
-* Cor
-* Texto associado
+* **Tutorial Creators:** responsible for creating and editing instructions.
+* **End Users:** responsible for viewing and executing procedures.
 
 ---
 
-# Arquitetura
+# Main Features
+
+## Tutorial Management
+
+* Create tutorials
+* Edit tutorials
+* Rename tutorials
+* Delete tutorials
+* Filter tutorials
+
+## Task Management
+
+* Create tasks
+* Edit tasks
+* Delete tasks
+* Reorder tasks
+* Preview tasks
+
+## Virtual Objects
+
+The application supports the following virtual elements:
+
+* Directional Arrow
+* Clockwise Arrow
+* Counterclockwise Arrow
+* 3D Text
+* Attention Indicator
+* Correct Indicator
+* Incorrect Indicator
+* Prohibition Indicator
+* Virtual Tools
+
+Each object can be individually configured through the following properties:
+
+* Position
+* Rotation
+* Scale
+* Color
+* Associated Text
+
+---
+
+# Architecture
 
 ```text
-Usuário
+User
    │
    ▼
-Aplicação Android
+Android Application
 (Unity + Vuforia)
    │
-   ├── Banco de Dados
+   ├── Database
    │      (MongoDB Atlas)
    │
-   └── Repositório de Objetos
+   └── Object Repository
           (Asset Bundles)
 ```
 
-O banco de dados é responsável por armazenar:
+The database is responsible for storing:
 
-* Tutoriais
-* Tarefas
-* Objetos virtuais
-* Configurações dos objetos
+* Tutorials
+* Tasks
+* Virtual Objects
+* Object Configurations
 
-O repositório de objetos virtuais armazena os modelos e recursos utilizados pela aplicação.
+The virtual object repository stores the models and assets used by the application.
 
 ---
 
-# Tecnologias Utilizadas
+# Technologies Used
 
-| Tecnologia     | Finalidade                          |
+| Technology     | Purpose                             |
 | -------------- | ----------------------------------- |
-| Unity          | Desenvolvimento da aplicação        |
-| C#             | Programação                         |
-| Vuforia Engine | Rastreamento em Realidade Aumentada |
-| MongoDB Atlas  | Banco de dados                      |
-| Android        | Plataforma móvel                    |
-| Blender        | Modelagem 3D                        |
-| Figma          | Prototipação da interface           |
-| Git            | Controle de versão                  |
+| Unity          | Application Development             |
+| C#             | Programming Language                |
+| Vuforia Engine | Augmented Reality Tracking          |
+| MongoDB Atlas  | Database                            |
+| Android        | Mobile Platform                     |
+| Blender        | 3D Modeling                         |
+| Figma          | User Interface Prototyping          |
+| Git            | Version Control                     |
 
 ---
 
-# Estrutura do Projeto
+# Project Structure
 
 ```text
 Mobile_AR_Tutorial
@@ -115,118 +116,118 @@ Mobile_AR_Tutorial
 └── ...
 ```
 
-Os diretórios mais importantes são:
+The most important directories are:
 
 ### Assets
 
-Contém:
+Contains:
 
-* Scripts C#
+* C# Scripts
 * Prefabs
-* Imagens
-* Objetos 3D
-* Interfaces
-* Recursos de RA
+* Images
+* 3D Objects
+* User Interfaces
+* AR Resources
 
 ### Packages
 
-Pacotes utilizados pelo Unity:
+Unity packages used in the project:
 
 * Vuforia Engine
 * Newtonsoft Json
-* Dependências do projeto
+* Project Dependencies
 
 ### ProjectSettings
 
-Configurações do projeto Unity.
+Unity project configuration files.
 
 ---
 
-# Configuração do Banco de Dados
+# Database Configuration
 
-O projeto utiliza MongoDB Atlas.
+The project uses MongoDB Atlas.
 
-## Passo 1
+## Step 1
 
-Criar uma conta em:
+Create an account at:
 
 https://www.mongodb.com/atlas
 
-## Passo 2
+## Step 2
 
-Criar um Cluster.
+Create a Cluster.
 
-## Passo 3
+## Step 3
 
-Criar um banco de dados.
+Create a Database.
 
-Exemplo:
+Example:
 
 ```text
 ARTutorials
 ```
 
-## Passo 4
+## Step 4
 
-Criar uma coleção:
+Create a Collection:
 
 ```text
 Tutorials
 ```
 
-## Passo 5
+## Step 5
 
-Criar usuário com permissão de leitura e escrita.
+Create a user with read and write permissions.
 
-## Passo 6
+## Step 6
 
-Configurar a lista de IPs autorizados.
+Configure the IP Access List.
 
-## Passo 7
+## Step 7
 
-Obter a Connection String.
+Obtain the Connection String.
 
-Exemplo:
+Example:
 
 ```text
-mongodb+srv://usuario:senha@cluster.mongodb.net/
+mongodb+srv://username:password@cluster.mongodb.net/
 ```
 
-## Passo 8
+## Step 8
 
-Inserir a Connection String nos scripts responsáveis pela conexão com o banco.
+Insert the Connection String into the scripts responsible for database connectivity.
 
 ---
 
-# Configuração do Repositório de Objetos Virtuais
+# Virtual Object Repository Configuration
 
-A aplicação realiza o download dinâmico dos objetos utilizados nos tutoriais.
+The application dynamically downloads the objects used in tutorials.
 
-Os Asset Bundles podem ser armazenados em:
+Asset Bundles can be stored in:
 
 * Google Drive
 * Azure Blob Storage
 * AWS S3
-* Servidor HTTP
-* Rede corporativa interna
-* NAS corporativo
+* HTTP Server
+* Internal Corporate Network
+* Corporate NAS
 
-Após a configuração do repositório, as URLs dos objetos devem ser associadas aos registros armazenados no banco de dados.
+After configuring the repository, the object URLs must be associated with the corresponding records stored in the database.
 
 ---
 
-# Compilação
+# Build Instructions
 
-## Requisitos
+## Requirements
 
-* Unity 2022 LTS ou superior
+* Unity 2022 LTS or later
 * Android SDK
 * OpenJDK
 * Android Build Support
 
-## Gerar APK
+## Generate APK
 
-No Unity:
+In Unity:
 
 ```text
 File
@@ -236,7 +237,7 @@ File
 → Build
 ```
 
-## Gerar App Bundle
+## Generate App Bundle
 
 ```text
 File
@@ -247,63 +248,64 @@ File
 
 ---
 
-# Implantação em Produção
+# Production Deployment
 
-Uma implantação típica pode utilizar:
+A typical deployment architecture may include:
 
-### Banco de Dados
+### Database
 
 * MongoDB Atlas
 
-### Repositório de Objetos
+### Object Repository
 
 * Azure Blob Storage
 * AWS S3
-* Servidor corporativo
+* Corporate Server
 
-### Clientes
+### Clients
 
-* Smartphones Android
+* Android Smartphones
 
-Em ambientes industriais, tanto o banco de dados quanto os objetos virtuais podem ser hospedados em servidores internos da organização, mantendo todos os dados dentro da infraestrutura corporativa.
-
----
-
-# Resultados Obtidos
-
-A aplicação foi avaliada por especialistas de domínio e usuários finais.
-
-Resultados médios observados:
-
-| Grupo           | SUS   | TAM  |
-| --------------- | ----- | ---- |
-| Especialistas   | 85,60 | 4,47 |
-| Usuários Finais | 92,57 | 4,68 |
-
-Os resultados indicaram elevados níveis de usabilidade e aceitação da tecnologia para ambos os grupos avaliados.
+In industrial environments, both the database and virtual objects can be hosted on internal company servers, ensuring that all data remains within the organization's infrastructure.
 
 ---
 
-# Publicação
+# Results
 
-Este projeto originou a publicação:
+The application was evaluated by domain experts and end users.
 
-**Tutoriais AR Interativos: Uma Ferramenta Simplificada para Indústria 5.0**
+Average results obtained:
 
-SBAI 2025 – Simpósio Brasileiro de Automação Inteligente.
+| Group          | SUS   | TAM  |
+| -------------- | ----- | ---- |
+| Domain Experts | 85.60 | 4.47 |
+| End Users      | 92.57 | 4.68 |
+
+The results indicate high levels of usability and technology acceptance across both evaluated groups.
 
 ---
 
-# Autor
+# Publication
+
+This project resulted in the publication:
+
+**Interactive AR Tutorials: A Simplified Tool for Industry 5.0**
+
+SBAI 2025 – Brazilian Symposium on Intelligent Automation.
+
+---
+
+# Author
 
 Rodrigo José de Paiva
 
-Programa de Pós-Graduação em Instrumentação, Controle e Automação de Processos de Mineração (PROFICAM)
+Graduate Program in Instrumentation, Control, and Automation of Mining Processes (PROFICAM)
 
-Universidade Federal de São João del-Rei (UFSJ)
+Federal University of São João del-Rei (UFSJ)
 
 ---
 
-# Licença
+# License
 
-Projeto disponibilizado para fins acadêmicos e científicos.
+This project is made available for academic and scientific purposes.
+````
